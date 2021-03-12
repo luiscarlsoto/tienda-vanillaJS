@@ -1,5 +1,7 @@
 const express = require('express')
 const mysql = require('mysql2');
+const url = require('url');
+
 
 //Configuracion de nuesta base de datos
 const db = require('./config');
@@ -12,15 +14,20 @@ connection.connect();
 const port = process.env.PORT;
 // asignmaos express a nuestro
 const app = express()
+//CORS
 var cors = require('cors')
 app.use(cors())
+app.use(express.json());
 
-app.get('/product', (req, res) =>{
+
+app.post('/product', (req, res) =>{
+    let query = `SELECT * FROM product 
+                 WHERE name like '%${req.body.search}%' 
+                 AND category = '${req.body.category}'`
     try {
-        connection.query('SELECT * FROM product', (err, results, field) => {
+        connection.query(query, '%' + req.body.search + '%', (err, results, field) => {
             res.send(JSON.stringify({"status": 200, "error": null, "response": results}
             ));
-        
     });
     } catch (error) {
         res.send(JSON.stringify({"status": 500, "error": error, "response": null})); 
@@ -34,7 +41,7 @@ app.get('/category', (req, res) =>{
             }));
         });
         } catch (error) {
-            next(error);
+                res.send(JSON.stringify({"status": 500, "error": error, "response": null})); 
         }    
     });
 
