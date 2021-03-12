@@ -1,3 +1,7 @@
-.env
 node_modules
-packgake-lock.json
+dist
+.vscode
+.eslintcache
+debug.log
+.env
+package-lock.json
