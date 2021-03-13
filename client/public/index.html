@@ -8,29 +8,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./assets/errorImg.png">
     <title>Bsale Test</title>
     
 </head>
 <body>
     <header>
         <h2>Bsale Test</h2>
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <div class="dropdown-content">
-
-            </div>
-          </div>
+        <div>
+            <select id="categorySelect">
+                <option value="" selected disabled hidden>Categorias</option>
+                <option value="" >Tienda</option>
+            </select>
+        </div>
         <div class="btns-header">
             <div class="btn-search">
-                <input type="text" required>
-                <i class="fas fa-search"></i>
+                <input id="searchInput" class="searchInput" type="text" required>
+                <i onClick="search()" id="searchBtn" class="searchBtn fas fa-search"></i>
             </div>
             <i class="fas fa-shopping-cart"></i>
         </div>
         </header>
         <div id="container">
         </div>
+        <script src="../src/getData.js"></script>
+        
 </body>
-<script src="../src/getData.js"></script>
         
 </html>}
