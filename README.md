@@ -15,7 +15,7 @@ $ cd tienda-vanillaJS
 
 notice, you need client and server runs concurrently in different terminal session, in order to make them talk to each other
 
-## Server-side usage(PORT: 4000)
+## Server-side usage(PORT: 5000)
 
 ### Start
 
