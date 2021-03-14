@@ -16,7 +16,7 @@ Object.defineProperty(String.prototype, 'upperCase', {
 
 //Inicializando la pagina
 let SERVER_URL = 'https://bsales-test123123.herokuapp.com/'
-let defaultImg = './assets/errorImg.PNG';
+let defaultImg = 'https://commercial.bunn.com/img/image-not-available.png';
 loadPage()
 loadCategoryMenu()
 
