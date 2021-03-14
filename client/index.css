@@ -8,7 +8,7 @@ h2 {
     font-size: 5vh;
 }
 h1.alert-msg {
-    padding: 4rem;
+    padding-top: 4rem;
     color: red;
     height: 10vh;
     /* border: solid 1px; */
