@@ -22,10 +22,9 @@ app.use(express.json());
 
 app.post('/product', (req, res) =>{
     let data = req.body;
+    console.log(data)
     let query = data.category === "" ? `SELECT * FROM product WHERE name LIKE '%${data.search}%'` :
-    `SELECT * FROM product WHERE category = '${data.category}'`
-    // BUSQUEDA POR CATEGORIA USAR:
-    // `SELECT * FROM product WHERE name like '%${data.search}%' AND category = '${data.category}'`
+    `SELECT * FROM product WHERE name like '%${data.search}%' AND category = '${data.category}'`
     try {
         connection.query(query, '%' + req.body.search + '%', (err, results, field) => {
             res.send(JSON.stringify({"status": 200, "error": null, "response": results}
