@@ -1,6 +1,8 @@
 //Selector
 const dropdownSelector = document.querySelector("#categorySelect")
 const searchInput = document.querySelector(".searchInput")
+const containerStore = document.getElementById('container-store')
+const categorySelect = document.getElementById('categorySelect')
 //Listener
 dropdownSelector.addEventListener("change", getItemCategory);
 //Detectamos cada vez que le dan enter en el input
@@ -39,7 +41,7 @@ async function loadCategoryMenu() {
     let categoryList = await getCategory();
     for (let index in categoryList) {
         itemHTML = `<option value=${categoryList[index].id}>${categoryList[index].name.upperCase()}</option>`
-        document.getElementById('categorySelect').innerHTML += itemHTML
+        categorySelect.innerHTML += itemHTML
     }
 }
 //Obtenemos la lista de categorias desde el servidor
@@ -57,7 +59,7 @@ async function loadPage(categoryId = null, search = "") {
     let categoryList = await getCategory()
 
     //Reinicio de página
-    document.getElementById('container').innerHTML = ""
+    containerStore.innerHTML = ""
     //If !== null Busqueda por categoria, si es null, muestra toda la tienda.
     if (categoryId !== null) {
         let itemHTML = `
@@ -67,7 +69,7 @@ async function loadPage(categoryId = null, search = "") {
                 </div>
                 <div id="section${categoryId}" class="category-product"></div>
             <div>`
-        document.getElementById('container').innerHTML += itemHTML
+            containerStore.innerHTML += itemHTML
         getProduct(categoryId, search)
     } else {
         for (const index in categoryList) {
@@ -78,7 +80,7 @@ async function loadPage(categoryId = null, search = "") {
                 </div>
                 <div id="section${categoryList[index].id}" class="category-product"></div>
             <div>`
-            document.getElementById('container').innerHTML += itemHTML
+            containerStore.innerHTML += itemHTML
             getProduct(categoryList[index].id, search)
         }
     }
@@ -119,7 +121,7 @@ function getProduct(categoryId, search) {
                 `
                 section.innerHTML += itemHTML;
             }
-            if(document.getElementById('container').children.length < 1) document.getElementById('container').innerHTML = "<h1 class='alert-msg'>No se encontraron productos con esa descripción.</h1>"
+            if(containerStore.children.length < 1) containerStore.innerHTML = "<h1 class='alert-msg'>No se encontraron productos con esa descripción.</h1>"
         })
         .catch(err => console.warn(err))
 }
