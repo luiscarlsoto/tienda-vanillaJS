@@ -89,6 +89,7 @@ async function loadPage(categoryId = null, search = "") {
 //Obtención de los productos desde el servidor
 function getProduct(categoryId, search) {
     loadingBar.style.display = "flex"
+    setTimeout(function(){ loadingBar.style.display = "none" }, 2000);
     fetch(SERVER_URL + 'product', {
             method: 'POST',
             headers: {
