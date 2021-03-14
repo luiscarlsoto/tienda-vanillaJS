@@ -3,6 +3,7 @@ const dropdownSelector = document.querySelector("#categorySelect")
 const searchInput = document.querySelector(".searchInput")
 const containerStore = document.getElementById('container-store')
 const categorySelect = document.getElementById('categorySelect')
+const loadingBar = document.getElementById('loadingStore')
 //Listener
 dropdownSelector.addEventListener("change", getItemCategory);
 //Detectamos cada vez que le dan enter en el input
@@ -24,7 +25,6 @@ loadCategoryMenu()
 
 
 //##################    Funciones   ###############################
-
 //Busquedas por nombre
 function search() {
     let search = searchInput.value
@@ -34,6 +34,7 @@ function search() {
 function getItemCategory(event) {
     //Loadpage(id de la pagina, elemento a buscar). Por si se desea agregar un buscador por categoria.
     loadPage(event.target.value || null, "")
+
 }
 // Cargamos el menú
 async function loadCategoryMenu() {
@@ -56,10 +57,10 @@ function getCategory() {
 }
 // Cargamos la pagina con los parametros
 async function loadPage(categoryId = null, search = "") {
-    let categoryList = await getCategory()
-
-    //Reinicio de página
+    loadingBar.style.display = "flex"
     containerStore.innerHTML = ""
+    let categoryList = await getCategory()
+    //Reinicio de página
     //If !== null Busqueda por categoria, si es null, muestra toda la tienda.
     if (categoryId !== null) {
         let itemHTML = `
@@ -83,10 +84,11 @@ async function loadPage(categoryId = null, search = "") {
             containerStore.innerHTML += itemHTML
             getProduct(categoryList[index].id, search)
         }
-    }
+    }    
 }
 //Obtención de los productos desde el servidor
 function getProduct(categoryId, search) {
+    loadingBar.style.display = "flex"
     fetch(SERVER_URL + 'product', {
             method: 'POST',
             headers: {
@@ -100,10 +102,10 @@ function getProduct(categoryId, search) {
         })
         .then(res => res.ok ? res.json() : Promise.reject(res))
         .then(data => {
+
             let item = data.response;
             let section = document.getElementById('section' + categoryId)
-            let category = document.getElementById('category' + categoryId)
-            if(item.length < 1) category.parentNode.removeChild(category)
+            let category = document.getElementById('category' + categoryId)            
             for (let element in item) {
                 let itemHTML = `
                 <div class="card"> 
@@ -121,9 +123,20 @@ function getProduct(categoryId, search) {
                 `
                 section.innerHTML += itemHTML;
             }
-            if(containerStore.children.length < 1) containerStore.innerHTML = "<h1 class='alert-msg'>No se encontraron productos con esa descripción.</h1>"
+            if(item.length < 1){
+            loadingBar.style.display = "flex"
+                category.parentNode.removeChild(category)
+            } 
+            if(containerStore.children.length < 1){
+                containerStore.innerHTML = 
+                "<h1 id='msg-alert' class='alert-msg'>No se encontraron productos con esa descripción.</h1>" 
+                loadingBar.style.display = "none"
+            } 
+
         })
         .catch(err => console.warn(err))
+        loadingBar.style.display = "none"
+
 }
 
    
