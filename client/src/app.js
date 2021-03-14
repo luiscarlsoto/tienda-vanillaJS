@@ -15,7 +15,7 @@ Object.defineProperty(String.prototype, 'upperCase', {
 });
 
 //Inicializando la pagina
-let SERVER_URL = 'http://localhost:5000/'
+let SERVER_URL = 'https://bsales-test123123.herokuapp.com/'
 let defaultImg = './assets/errorImg.PNG';
 loadPage()
 loadCategoryMenu()
