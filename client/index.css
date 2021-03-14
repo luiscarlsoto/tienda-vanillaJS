@@ -158,7 +158,24 @@ img.card-img {
     grid-gap: 1em;
     justify-content: center;
 }
-
+.fa-cart-plus{
+    background-color: white;
+    padding: .6rem;
+    border-radius: 50%;
+    transition: background-color .3s ease-in-out;
+}
+.fa-shopping-cart{
+    background-color: white;
+    padding: .6rem;
+    border-radius: 50%;
+    transition: background-color .3s ease-in-out;
+}
+.fa-shopping-cart:hover{
+    background-color: #c6c6c6;
+}
+.fa-cart-plus:hover{
+    background-color: #c6c6c6;
+}
 /* MEDIA QUERY*/
 @media (min-width: 820px) {
     .category-product {
