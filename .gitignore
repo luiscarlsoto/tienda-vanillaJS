@@ -3,5 +3,4 @@ dist
 .vscode
 .eslintcache
 debug.log
-.env
 package-lock.json
