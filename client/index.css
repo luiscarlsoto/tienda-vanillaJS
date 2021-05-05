@@ -4,6 +4,9 @@
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
 }
+img{
+    background: url(https://upload.wikimedia.org/wikipedia/commons/4/42/Loading.gif) no-repeat center;
+}
 body{
     background-color: #f7f7f7;
 }
