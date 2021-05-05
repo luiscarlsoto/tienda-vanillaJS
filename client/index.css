@@ -12,7 +12,7 @@ h2 {
 }
 h1.alert-msg {
     padding-top: 4rem;
-    color: red;
+    color: #515151;
     height: 10vh;
     /* border: solid 1px; */
     align-self: center;

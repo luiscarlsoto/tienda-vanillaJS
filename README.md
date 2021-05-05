@@ -1,6 +1,3 @@
-<h1 align="center">
-   Bsales test
-</h1>
 
 ## clone or download
 ```terminal
